@@ -5,7 +5,7 @@
  public class Matriz{
     public double [][] mat;
 
-    private int renglon, columna;
+    private int renglon, columna, multi;
     
     /**
      * Constructor por omisión, crea una matriz de 10 * 10 asignando el valor 0 a cada elemento.
@@ -127,6 +127,14 @@
      */
     public Matriz multiplicar(Matriz m){
       //Escribe aquí tu código
-      return null;
+      double [][] multi = new double [renglones()][columnas()];
+      Matriz matMul = new Matriz(multi);
+
+        for (int i = 0; i < mat.length; i++) {
+          for (int j = 0; j < mat.length; j++) {
+            multi[i][j] += mat[i][j] *  m.get(i, j);
+          }
+        }
+        return matMul;
     }
 }
