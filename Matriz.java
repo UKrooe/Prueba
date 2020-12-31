@@ -6,8 +6,6 @@
     public double [][] mat;
 
     private int renglon, columna;
-    private Matriz t, matA, matB;
-    private double [][] d1, d2, suma;
     
     /**
      * Constructor por omisión, crea una matriz de 10 * 10 asignando el valor 0 a cada elemento.
@@ -80,15 +78,10 @@
      */
     public Matriz trasponer(){
 
-      double [][] aux = new double [renglones()][columnas()];
-      //Escribe aquí tu código
-      for (int i = 0; i < renglones(); i++) {
-        for (int j = 0; j < columnas(); j++) {
-          mat[i][j] = mat[j][i];
-        }
-      }
-      t = new Matriz(mat);
-      return t;
+      double [][] aux = new double[columnas()][renglones()];
+      Matriz matAux = new Matriz(aux);
+
+      return matAux;
     }
 
     /**
@@ -97,7 +90,14 @@
      */
     public boolean esSimetrica(){
       //Escribe aquí tu código
-      return false;
+      for (int i = 0; i < renglones(); i++) {
+        for (int j = 0; j < columnas(); j++) {
+          if(mat[i][j] != mat[j][i]){
+            return false;
+          }
+        }
+      }
+      return true;
     }
 
     /**
@@ -106,18 +106,17 @@
      * @param m -- Matriz que será sumada a la que llama al método.
      */
     public void sumar(Matriz m){
-    //Escribe aquí tu código
-    matA = new Matriz();
+      //Escribe aquí tu código
+      double suma [][] = new double [renglones()][columnas()];
 
-      if(matA.renglones() == m.renglones() && matA.columnas() == m.columnas()){
-
-        for (int i = 0; i < matA.renglones(); i++) {
-          for (int j = 0; j < matA.columnas(); j++) {
-            suma[i][j] = d1[i][j] + d2[i][j];
+      if(renglones() == m.renglones() && columnas() == m.columnas()){
+        for (int i = 0; i < renglones(); i++) {
+          for (int j = 0; j < columnas(); j++) {
+            suma[i][j] = mat[i][j] + m.get(i, j) ;
           }
         }
       }else{
-        System.out.println("Las matrices no son iguales");
+      System.out.println("Las matrices no son iguales");
       }
     }
 
